@@ -1,0 +1,83 @@
+<div class="page-alignment">
+  <div class="container" id="container">
+
+    <div *ngIf="successMessage" class="alert success-alert">
+      {{ successMessage }}
+    </div>
+
+    <div *ngIf="errorMessage" class="alert error-alert">
+      {{ errorMessage }}
+    </div>
+
+    <!-- Sign Up Form -->
+    <div class="form-container sign-up-container">
+      <form (ngSubmit)="onSignUp()" #signUpForm="ngForm">
+        <h1>Create Account</h1>
+        <span class="m-3">Use your email for registration</span>
+
+        <input name="userName" type="text" placeholder="Name" [(ngModel)]="signUpObj.userName" required minlength="3"
+          #userName="ngModel">
+        <div *ngIf="userName.invalid && (userName.dirty || userName.touched)" class="validation-error">
+          <div *ngIf="userName.errors?.['required']">Name is required</div>
+          <div *ngIf="userName.errors?.['minlength']">Name must be at least 3 characters</div>
+        </div>
+
+        <input name="email" type="email" placeholder="Email" [(ngModel)]="signUpObj.email" required email
+          #email="ngModel">
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="validation-error">
+          <div *ngIf="email.errors?.['required']">Email is required</div>
+          <div *ngIf="email.errors?.['email']">Please enter a valid email</div>
+        </div>
+
+        <input name="password" type="password" placeholder="Password" [(ngModel)]="signUpObj.password" required
+          minlength="6" #password="ngModel">
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="validation-error">
+          <div *ngIf="password.errors?.['required']">Password is required</div>
+          <div *ngIf="password.errors?.['minlength']">Password must be at least 6 characters</div>
+        </div>
+
+        <button type="submit" [disabled]="signUpForm.invalid">Sign Up</button>
+      </form>
+    </div>
+
+    <!-- Sign In Form -->
+    <div class="form-container sign-in-container">
+      <form (ngSubmit)="onLoginIn()" #loginForm="ngForm">
+        <h1>Sign in</h1>
+        <span class="m-3">Use your email account for Sign In</span>
+
+        <input name="email" type="email" placeholder="Email" [(ngModel)]="loginObj.email" required email
+          #loginEmail="ngModel">
+        <div *ngIf="loginEmail.invalid && (loginEmail.dirty || loginEmail.touched)" class="validation-error">
+          <div *ngIf="loginEmail.errors?.['required']">Email is required</div>
+          <div *ngIf="loginEmail.errors?.['email']">Please enter a valid email</div>
+        </div>
+
+        <input name="password" type="password" placeholder="Password" [(ngModel)]="loginObj.password" required
+          #loginPassword="ngModel">
+        <div *ngIf="loginPassword.invalid && (loginPassword.dirty || loginPassword.touched)" class="validation-error">
+          <div *ngIf="loginPassword.errors?.['required']">Password is required</div>
+        </div>
+
+        <a href="#" class="forgot-password">Forgot your password?</a>
+        <button type="submit" [disabled]="loginForm.invalid">Sign In</button>
+      </form>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+          <h1>Welcome Back!</h1>
+          <p>To keep connected with us please login with your personal info</p>
+          <button class="ghost" id="signIn" (click)="toggleForms()">Sign In</button>
+        </div>
+        <div class="overlay-panel overlay-right">
+          <h1>Hello, Friend!</h1>
+          <p>Enter your personal details and start journey with us</p>
+          <button class="ghost" id="signUp" (click)="toggleForms()">Sign Up</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

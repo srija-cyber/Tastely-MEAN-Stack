@@ -1,0 +1,192 @@
+<div class="container mx-auto px-4 py-8 max-w-7xl">
+  <!-- Header -->
+  <div class="gradient-bg rounded-2xl p-8 mb-8 text-white">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center space-x-4">
+        <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-2xl">
+          👩‍🍳
+        </div>
+        <div>
+          <h1 class="text-3xl font-bold">Good Morning, {{user[0].name}}! 🌅</h1>
+          <p class="text-blue-100 mt-1">Ready to cook something amazing today?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Stats -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+    <div class="stats-card rounded-xl p-6 text-white card-hover">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-pink-100">Total Liked Recipes</p>
+          <p class="text-3xl font-bold">{{favoriteRecipes.length}}</p>
+        </div>
+        <i class="fas fa-heart text-4xl opacity-80"></i>
+      </div>
+    </div>
+    <div class="leaderboard-card rounded-xl p-6 text-white card-hover">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-blue-100">Recipes Posted</p>
+          <p class="text-3xl font-bold">{{postedRecipes.length}}</p>
+        </div>
+        <i class="fas fa-utensils text-4xl opacity-80"></i>
+      </div>
+    </div>
+    <div class="community-card rounded-xl p-6 text-white card-hover">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-green-100">Leaderboard Rank</p>
+          <p class="text-3xl font-bold">#7</p>
+        </div>
+        <i class="fas fa-trophy text-4xl opacity-80"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content Grid -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <!-- Left Column -->
+    <div class="lg:col-span-2 space-y-8">
+      <!-- My Favorites -->
+      <div class="bg-white rounded-xl shadow-lg p-6">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-2xl font-bold text-gray-800 flex items-center">
+            <i class="fas fa-heart text-red-500 mr-3"></i>My Favorites
+          </h2>
+          <span class="bg-red-100 text-red-600 px-3 py-1 rounded-full text-sm font-medium">
+            {{favoriteRecipes.length}} recipes
+          </span>
+        </div>
+        <div class="space-y-4">
+          <div *ngFor="let recipe of favoriteRecipes" class="flex items-center justify-between p-4 bg-gray-50 rounded-lg card-hover">
+            <div class="flex items-center space-x-4">
+              <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center text-xl">
+                {{getEmojiForCuisine(recipe.cuisine)}}
+              </div>
+              <div>
+                <h3 class="font-semibold text-gray-800">{{recipe.name}}</h3>
+                <p class="text-gray-600 text-sm">{{recipe.cuisine}} • {{recipe?.prepTime }} mins</p>
+              </div>
+            </div>
+            <div class="flex space-x-2">
+              <button (click)="viewRecipe(recipe._id)"  class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm transition-colors" style="margin-right: 10px;">
+                View
+              </button>
+              <button (click)="onToggleFavorite(recipe._id!)" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm transition-colors" style="margin-right: 10px;">
+                Unlike
+              </button>
+              <button (click)="shareRecipe(recipe)" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded text-sm transition-colors">
+                Share
+              </button>
+            </div>
+          </div>
+          <div *ngIf="favoriteRecipes.length === 0" class="text-center py-4 text-gray-500">
+            You haven't liked any recipes yet.
+          </div>
+        </div>
+      </div>
+
+      <!-- My Posted Recipes -->
+      <div class="bg-white rounded-xl shadow-lg p-6">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-2xl font-bold text-gray-800 flex items-center">
+            <i class="fas fa-edit text-blue-500 mr-3"></i>My Posted Recipes
+          </h2>
+          <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm font-medium">
+            {{postedRecipes.length}} recipes
+          </span>
+        </div>
+        <div class="space-y-4">
+          <div *ngFor="let recipe of postedRecipes" class="flex items-center justify-between p-4 bg-gray-50 rounded-lg card-hover">
+            <div class="flex items-center space-x-4">
+              <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center text-xl">
+                {{getEmojiForCuisine(recipe.cuisine)}}
+              </div>
+              <div>
+                <h3 class="font-semibold text-gray-800">{{recipe.name}}</h3>
+                <p class="text-gray-600 text-sm">❤️ {{recipe.likes || 0}} likes • 💬 {{recipe.comments?.length || 0}} comments</p>
+              </div>
+            </div>
+            <div class="flex space-x-2">
+              <button [routerLink]="['/submit-dishes', recipe._id]" class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded text-sm transition-colors" style="margin-right: 10px;">
+                Edit
+              </button>
+              <button (click)="deleteRecipe(recipe._id)" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm transition-colors">
+                Delete
+              </button>
+              <!-- <button class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded text-sm transition-colors">
+                Comments
+              </button> -->
+            </div>
+          </div>
+          <div *ngIf="postedRecipes.length === 0" class="text-center py-4 text-gray-500">
+            You haven't posted any recipes yet.
+            <a [routerLink]="['/submit-dishes','']" class="text-blue-500 hover:underline ml-2">Share your first recipe!</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column -->
+    <div class="space-y-8">
+      <!-- Leaderboard Snapshot -->
+      <div class="bg-white rounded-xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+          <i class="fas fa-trophy text-yellow-500 mr-3"></i>Leaderboard
+        </h2>
+        <div class="space-y-3">
+          <div *ngFor="let chef of leaderboard" class="flex items-center justify-between p-3 bg-gradient-to-r from-yellow-100 to-yellow-50 rounded-lg">
+            <div class="flex items-center space-x-3">
+              <span class="text-2xl">{{chef.rank === 1 ? '🥇' : chef.rank === 2 ? '🥈' : '🥉'}}</span>
+              <div>
+                <p class="font-semibold text-gray-800">{{chef.name}}</p>
+                <p class="text-sm text-gray-600">{{chef.points.toLocaleString()}} points</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 p-3 bg-blue-50 rounded-lg text-center">
+          <p class="text-blue-800 font-medium">Your rank: 7th out of 120 chefs</p>
+          <p class="text-blue-600 text-sm">1,340 points</p>
+        </div>
+      </div>
+
+      <!-- Community Stats -->
+      <div class="bg-white rounded-xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+          <i class="fas fa-users text-green-500 mr-3"></i>Community Stats
+        </h2>
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-gray-600">Total Recipes</span>
+            <span class="font-bold text-2xl text-green-600">{{stats.totalRecipes.toLocaleString()}}</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-gray-600">Popular Cuisine</span>
+            <span class="font-semibold text-orange-600">🍝 {{stats.popularCuisine}}</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-gray-600">Most Liked Today</span>
+            <span class="font-semibold text-red-600">🍰 {{stats.mostLikedToday}}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Activity Feed -->
+      <div class="bg-white rounded-xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+          <i class="fas fa-bell text-purple-500 mr-3"></i>Recent Activity
+        </h2>
+        <div class="space-y-4">
+          <div *ngFor="let activity of activities" class="activity-item">
+            <p class="text-sm text-gray-600">{{activity.time}}</p>
+            <p class="text-gray-800" [innerHTML]="activity.message"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

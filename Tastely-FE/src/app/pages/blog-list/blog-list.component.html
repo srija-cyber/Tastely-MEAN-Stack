@@ -1,0 +1,39 @@
+<div class="container mt-5">
+  <h1 class="mb-4">Tastely Blogs</h1>
+
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <input type="text" class="form-control" placeholder="Search blogs..." [formControl]="searchControl"
+        (input)="onSearch()">
+    </div>
+    <div class="col-md-6">
+      <select class="form-control" [formControl]="categoryControl">
+        <option value="">All Categories</option>
+        <option *ngFor="let category of categories$ | async" [value]="category">{{category}}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-4 col-md-6 mb-4" *ngFor="let blog of blogs">
+      <div class="card h-100">
+        <img [src]="blog.imageUrl" class="card-img-top" [alt]="blog.title">
+        <div class="card-body">
+          <h5 class="card-title">{{blog.title}}</h5>
+          <p class="card-text">{{blog.shortDescription}}</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <small class="text-muted">By {{blog.author}}</small>
+            <small class="text-muted">{{blog.publishedDate | date}}</small>
+          </div>
+        </div>
+        <div class="card-footer bg-transparent">
+          <a [routerLink]="['/blogDetail',blog._id]" class="btn btn-primary">Read More</a>
+          <div class="mt-2">
+            <span class="badge bg-secondary me-1" *ngFor="let category of blog.categories">{{category}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

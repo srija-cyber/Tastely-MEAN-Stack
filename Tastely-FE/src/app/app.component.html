@@ -1,0 +1,49 @@
+<nav *ngIf="!hideNavbar" class="bg-emerald-600 text-white py-3 shadow-md">
+  <div class="container d-flex justify-between items-center">
+    <a href="#" class="flex items-center gap-2 text-white no-underline">
+      <img src="https://res.cloudinary.com/dt1tu6lmd/image/upload/v1751004620/Screenshot_2025-06-27_113746_ylkfjc.png"
+        alt="Tastely Logo" class="w-12 h-12 rounded-full shadow border border-white object-cover" />
+      <span class="font-bold text-2xl">Tastely</span>
+    </a>
+    <ul class="flex space-x-6 m-1">
+      <li>
+        <a class="nav-link active" routerLink="">
+          <i class="fas fa-home me-1"></i> Home
+        </a>
+      </li>
+
+      <li>
+        <a class="nav-link px-3" routerLink="dashboard" style="color: white !important">
+          <i class="fa-solid fa-gauge"></i> Dashboard
+        </a>
+      </li>
+
+      <li>
+        <a class="nav-link px-3" [routerLink]="['submit-dishes','']" style="color: white !important;">
+          <i class="fas fa-users me-1"></i> Submit Recipe
+        </a>
+      </li>
+
+      <li>
+        <a class="nav-link px-3" routerLink="blogs" style="color: white !important">
+          <i class="fas fa-blog"></i> Blogs
+        </a>
+      </li>
+      <li>
+        <a class="nav-link px-3" routerLink="faqs" style="color: white !important">
+          <i class="fas fa-question-circle"></i> FAQ's</a>
+      </li>
+
+
+      <li>
+        <a class="nav-link px-3" routerLink="profile" style="color: white !important;">
+          <i class="fas fa-user"></i> Profile
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+
+<router-outlet></router-outlet>

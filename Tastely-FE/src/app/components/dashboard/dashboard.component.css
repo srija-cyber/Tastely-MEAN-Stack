@@ -1,0 +1,30 @@
+.gradient-bg {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.card-hover {
+    transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.activity-item {
+    border-left: 3px solid #667eea;
+    padding-left: 1rem;
+    margin-bottom: 1rem;
+}
+
+.stats-card {
+    background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+}
+
+.leaderboard-card {
+    background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.community-card {
+    background: linear-gradient(45deg, #43e97b 0%, #38f9d7 100%);
+}
