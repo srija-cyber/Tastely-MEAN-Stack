@@ -25,7 +25,7 @@ export class AuthService {
   private currentUserSubject: BehaviorSubject<User | null>;
   public currentUser: Observable<User | null>;
 
-  private readonly API_URL = 'http://localhost:5000/api';
+  private readonly API_URL = 'http://localhost:3000';
   private readonly TOKEN_KEY = 'auth_token';
 
   constructor(
@@ -49,12 +49,11 @@ export class AuthService {
   }
 
   signUp(user: User): Observable<User> { 
-    return this.http.post<User>(`${this.API_URL}/auth/register`, user)
-
+    return this.http.post<User>(`${this.API_URL}/api/users/register`, user)
   }
 
   signIn(email: string, password: string): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.API_URL}/auth/login`, { email, password })
+    return this.http.post<AuthResponse>(`${this.API_URL}/api/users/login`, { email, password })
   }
 
   logout(): void {
@@ -95,18 +94,12 @@ export class AuthService {
   }
 
   getCurrentUser(): Observable<User> {
-  return this.http.get<User>(`${this.API_URL}/users/me`, {
-    headers: new HttpHeaders({
-      'Authorization': `Bearer ${this.getToken()}`
-    })
-  });
-}
+    const userId = this.getToken()?.split('-').pop();
+    return this.http.get<User>(`${this.API_URL}/users/${userId}`);
+  }
 
-uploadAvatar(formData: FormData): Observable<User> {
-  return this.http.post<User>(`${this.API_URL}/users/avatar`, formData, {
-    headers: new HttpHeaders({
-      'Authorization': `Bearer ${this.getToken()}`
-    })
-  });
-}
+  uploadAvatar(formData: FormData): Observable<User> {
+    const userId = this.getToken()?.split('-').pop();
+    return this.http.patch<User>(`${this.API_URL}/users/${userId}`, { avatar: 'mock-avatar-url' });
+  }
 }

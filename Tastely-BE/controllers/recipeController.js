@@ -3,7 +3,6 @@ exports.toggleLikeRecipe = async (req, res) => {
   try {
     const recipeId = req.params.id;
     const userId = req.body.userId;
-    const mongoose = require('mongoose');
     const recipe = await Recipe.findById(recipeId);
     if (!recipe) return res.status(404).json({ msg: "Recipe not found" });
 
@@ -28,7 +27,6 @@ exports.toggleLikeRecipe = async (req, res) => {
 exports.getLikedRecipesByUser = async (req, res) => {
   try {
     const userId = req.params.userId;
-    const mongoose = require('mongoose');
     const recipes = await Recipe.find({ likedBy:userId });
     res.json(recipes);
   } catch (err) {

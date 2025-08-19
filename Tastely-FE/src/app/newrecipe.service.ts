@@ -7,7 +7,7 @@ import { Recipe } from '../recipe-model';
   providedIn: 'root'
 })
 export class NewrecipeService {
-  baseUrl = 'http://localhost:5000/api';
+  baseUrl = 'http://localhost:3000';
 
   constructor(private http: HttpClient) { }
 
@@ -88,6 +88,6 @@ export class NewrecipeService {
   }
 
   getLikedRecipesByUser(userId: string): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(`${this.baseUrl}/recipes/liked/${userId}`);
+    return this.http.get<Recipe[]>(`${this.baseUrl}/recipes/recipes/liked/${userId}`);
   }
 }

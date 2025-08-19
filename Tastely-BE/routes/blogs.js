@@ -4,10 +4,10 @@ const { getAllBlogs, getBlogCategories,getBlogById} = require("../controllers/bl
 const authMiddleware = require("../middleware/authMiddleware");
 
 // GET /blogs - Get all blogs
-router.get("/",authMiddleware, getAllBlogs);
+router.get("/", getAllBlogs);
 
 // ✅ GET /blogs/categories - Get all unique categories
-router.get("/categories",authMiddleware, getBlogCategories);
-router.get("/:id",authMiddleware, getBlogById);
+router.get("/categories", getBlogCategories);
+router.get("/:id", getBlogById);
 
 module.exports = router;

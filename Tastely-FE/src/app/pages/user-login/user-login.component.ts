@@ -80,7 +80,7 @@ export class UserLoginComponent implements OnInit {
     this.authService.signIn(reqBody.email, reqBody.password).subscribe({
       next: (res: any) => {
         console.log(res);
-        localStorage.setItem('auth_token', res.token);
+        localStorage.setItem('auth_token', res.accessToken);
         localStorage.setItem('user', JSON.stringify(res.user));
         this.router.navigate(['/']);
         this.successMessage = 'Successfully signed in!';
