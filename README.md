@@ -1,4 +1,4 @@
-Tastely - “Your AI-powered recipe and blog companion, built with the MEAN stack"
+#Tastely - “Your AI-powered recipe and blog companion, built with the MEAN stack"
 
 Tastely is a full-stack MEAN (MongoDB, Express.js, Angular, Node.js) web application that blends culinary exploration, community interaction, and AI assistance into one seamless experience.
 
@@ -29,7 +29,7 @@ Diet guides and design selection options.
 
 🤖 AI Chatbot
 
-Integrated with JotPom AI to provide interactive recipe and cooking suggestions.
+Nia is Integrated with JotForm AI to provide interactive recipe and cooking suggestions.
 
 📊 Dashboard
 
@@ -71,8 +71,7 @@ More advanced AI chatbot features.
 
 Clone the repository:
 
-git clone https://github.com/your-username/day-sleep-project.git
-cd day-sleep-project
+git clone https://github.com/srija-cyber/Tastely-MEAN-Stack
 
 Backend Setup
 cd backend
@@ -84,9 +83,6 @@ cd frontend
 npm install
 ng serve
 
-📷 Screenshots (Optional)
-
-Add screenshots of your home page, dashboard, chatbot, and blogs for better presentation.
 
 🤝 Contributing
 
@@ -94,11 +90,11 @@ Pull requests are welcome! For major changes, please open an issue first to disc
 
 👩‍💻 Connect with Me
 
-Author: Srija
+Author: Dhanwada Srija
 
-🌐 GitHub
+🌐 GitHub : https://github.com/srija-cyber
 
-💼 LinkedIn
+💼 LinkedIn : www.linkedin.com/in/dhanwada-srija
 
 🍴 Fork This Project
 
