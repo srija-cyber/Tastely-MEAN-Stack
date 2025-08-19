@@ -1,10 +1,10 @@
-#Tastely - “Your AI-powered recipe and blog companion, built with the MEAN stack"
+## Tastely - “Your AI-powered recipe and blog companion, built with the MEAN stack"
 
 Tastely is a full-stack MEAN (MongoDB, Express.js, Angular, Node.js) web application that blends culinary exploration, community interaction, and AI assistance into one seamless experience.
 
 The platform provides recipe discovery, blog reading, community stats, and even an AI-powered chatbot (integrated with JotPom AI) to guide users through cooking, diets, and ingredient selection.
 
-🚀 Tech Stack
+# 🚀 Tech Stack
 
 Frontend: Angular (Responsive & Interactive UI)
 
